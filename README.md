@@ -15,16 +15,16 @@ Permet à l'utilisateur de consulter ses réservations précédentes, y compris 
 ### Diagramme de classes UML
 Propose un diagramme de classes en représentant les deux classes principales de l'application : Room (Chambre) et Reservation (Réservation).
 
-### Côté Technique
-#### Classes Backend (Java EE)
+## Côté Technique
+### Classes Backend (Java EE)
 Utilise des Servlets pour gérer la recherche de chambres d'hôtel, la création de réservations et la consultation des réservations précédentes de l'utilisateur.
-#### JavaBeans
+### JavaBeans
 Utilise la classe Room pour représenter les informations sur une chambre d'hôtel (type, prix, équipements, disponibilité, etc.).
 Utilise la classe Reservation pour représenter les réservations effectuées par les utilisateurs (identifiant, chambre réservée, dates, etc.).
-#### DAO (Data Access Object)
+### DAO (Data Access Object)
 Utilise l'interface RoomDAO pour définir les opérations de manipulation des données des chambres (recherche, réservation, etc.).
 Utilise l'interface ReservationDAO pour définir les opérations de manipulation des données des réservations.
-#### Base de Données
+### Base de Données
 Utilise une base de données relationnelle (par exemple, MySQL, PostgreSQL) pour stocker les informations sur les chambres et les réservations.
 Utilise JDBC (Java Database Connectivity) pour la communication entre l'application Java et la base de données.
 ### Frontend
