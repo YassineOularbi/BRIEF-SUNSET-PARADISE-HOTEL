@@ -6,5 +6,6 @@ import java.util.ArrayList;
 import com.java.beans.Room;
 
 public interface RoomDAO {
-	ArrayList<Room> getDataRoom() throws SQLException, ClassNotFoundException;
+	public ArrayList<Room> getDataRoom() throws SQLException, ClassNotFoundException;
+	public ArrayList<Room> searchAvailableRoom(Integer roomId, String roomType, Integer roomCapacity) throws ClassNotFoundException, SQLException;
 }

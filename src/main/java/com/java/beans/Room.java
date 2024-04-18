@@ -7,11 +7,11 @@ public class Room {
 	private Integer roomPrice;
 	private Integer roomCapacity;
 	private String roomAmenities;
-	private String roomAvailability;
+	private Boolean roomAvailability;
 	private String roomPicture;
 	
 	public Room(Integer roomId, String roomType, Integer roomPrice, Integer roomCapacity, String roomAmenities,
-			String roomAvailability, String roomPicture) {
+			Boolean roomAvailability, String roomPicture) {
 		super();
 		this.roomId = roomId;
 		this.roomType = roomType;
@@ -62,11 +62,11 @@ public class Room {
 		this.roomAmenities = roomAmenities;
 	}
 
-	public String getRoomAvailability() {
+	public Boolean getRoomAvailability() {
 		return roomAvailability;
 	}
 
-	public void setRoomAvailability(String roomAvailability) {
+	public void setRoomAvailability(Boolean roomAvailability) {
 		this.roomAvailability = roomAvailability;
 	}
 

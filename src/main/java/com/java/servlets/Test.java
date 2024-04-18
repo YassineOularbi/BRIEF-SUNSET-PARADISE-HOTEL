@@ -13,11 +13,11 @@ import com.java.dao.RoomDAOImpl;
 
 
 @WebServlet("/Home")
-public class Home extends HttpServlet {
+public class Test extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public Home() {
+    public Test() {
         super();
 
     }
@@ -31,7 +31,7 @@ public class Home extends HttpServlet {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		this.getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/Test.jsp").forward(request, response);
 	}
 
 
