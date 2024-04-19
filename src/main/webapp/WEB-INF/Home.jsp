@@ -26,20 +26,20 @@
             <img class="navbar-brand me-auto" style="width: 60px" src="https://i.ibb.co/hFYdn7p/light-logo.png">
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">WELCOME TO MQELA FOOD</h5>
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">WELCOME TO HOTEL SUNSET PARADISE</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
                         <li class="nav-item active-menu">
-                            <a class="nav-link text-dark mx-lg-2 mx-4" aria-current="page" href="#">Home</a>
+                            <a href="#" class="nav-link text-dark mx-lg-2 mx-4" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle mx-lg-2 mx-4 text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Booking
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#add-recipe">Room</a></li>
+                                <li><a class="dropdown-item" href="room">Room</a></li>
                                 <li><a class="dropdown-item" href="#">Reservation</a></li>
                                 <li><a class="dropdown-item" href="#">Restaurant</a></li>
                             </ul>
@@ -62,10 +62,10 @@
     <img class="bg-home me-auto overlay" style="width: 100%" src="https://i.ibb.co/CVJg7Ny/bg-home.jpg">
     <section class="home">
         
-        <span class="welcome custom-caption text-uppercase text-white d-block  mb-3">Welcome To 5 <img style="height: 15px; margin-bottom: 5px;" src="https://i.ibb.co/JkBdm7t/star.png" alt="star">   Hotel</span>
-        <h1 class="welcome text-white heading">A Best Place To Stay</h1>
+        <span id="welcome" class="welcome custom-caption text-uppercase text-white d-block  mb-3">Welcome To 5 <img style="height: 15px; margin-bottom: 5px;" src="https://i.ibb.co/JkBdm7t/star.png" alt="star">   Hotel</span>
+        <h1 id="welcome" class="welcome text-white heading">A Best Place To Stay</h1>
             <div class="rounded m-5 check-availabilty" id="next">
-                <form class="form-checking row" caction="#">
+                <form id="formCheck" method="post" action="room" class="form-checking row" >
                     <div class="col-md-2 mb-2">
                         <label for="CheckIn">Check In</label>
                         <input class="form-control mt-1" type="date" id="start" name="checkIn" value="2024-04-19" min="2024-01-01" max="2030-12-31" />
@@ -101,7 +101,7 @@
                             <option value="5">5+</option>
                         </select>
                     </div> 
-                    <button style="background-color: #FFC803; height: 40px; width: 200px;" class="border-0 mx-5 mt-3 text-light rounded" style="background-color: #c57e0b;" type="submit" class="btn">Check Availabilty</button>
+                    <button id="checkRoom"  style="background-color: #FFC803; height: 40px; width: 200px;" class="border-0 mx-5 mt-3 text-light rounded" style="background-color: #c57e0b;" type="submit" class="btn">Check Availabilty</button>
                 </form>
               </div>
               <section class="bg-light rooms">
@@ -240,11 +240,16 @@
                 </div>
               </section>
     </section>
-    <footer>
-        <i class='bx bxl-trip-advisor' style='color:#ffffff'  ></i>
-    </footer>
      <!-- JavaScript Link -->
-    <script src="js/script.js"></script>
+
+    <script type="text/javascript">
+    /*document.querySelector("#formCheck").addEventListener('submit', (event)=>{
+
+    	document.querySelectorAll(".welcome").style.display = "none";
+    	console.log("okkkk");
+    })*/
+    
+    </script>
     <!-- JavaScript Link -->
 
     <!-- bootstrap js link -->

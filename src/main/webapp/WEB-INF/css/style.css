@@ -30,7 +30,7 @@ nav{
     position: fixed;
 
 }
-.home .welcome{
+.welcome{
     text-align: center;
     position: relative;
     top: 200px;
@@ -70,4 +70,8 @@ nav{
     background-color: #FFC803;
     border: 2px solid #FFC803;
     border-radius: 30px;
+}
+.card-room{
+	position: relative;
+	top: 90px;
 }
