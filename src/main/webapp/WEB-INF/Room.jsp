@@ -103,26 +103,29 @@
                     <button style="background-color: #FFC803; height: 40px; width: 200px;" class="border-0 mx-5 mt-3 text-light rounded" style="background-color: #c57e0b;" type="submit" class="btn">Check Availabilty</button>
                 </form>
               </div>
-              <div class="container mt-5 card-room">
+              <div class=" mt-5 card-room">
     <div class="row">
         <c:forEach var="room" items="${arrayRoom}">
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Room</h5>
-                        <p class="card-text">Type: ${room.getRoomType()}</p>
-                        <p class="card-text">Prix: ${room.getRoomPrice()}</p>
-                        <p class="card-text">Capacité: ${room.getRoomCapacity()}</p>
-                        <p class="card-text">Disponibilité: <c:if test="${room.getRoomAvailability() eq true}">
-                        Yes
-                    </c:if>
-                    <c:if test="${room.getRoomAvailability() ne true}">
-                        No
-                    </c:if></p>
-                        <a href="/Paradise-Hotel/CreateReservation?Id=${room.getRoomId()}" class="btn btn-primary">Reserve</a>
-                    </div>
-                </div>
-            </div>
+				<div class="col-lg-3 bg-light mx-1 my-2" >
+                    <a href="#" class="room">
+                      <figure class="img-wrap">
+                        <img src="https://i.ibb.co/grF3Cnp/junior.jpg"  class="img-fluid mb-3">
+                      </figure>
+                      <div class="p-3 text-center">
+                        <h2 class="text-dark">${room.getRoomType()}</h2>
+                        <span class="text-uppercase letter-spacing-1 text-warning">${room.getRoomPrice()}$ / per night</span>
+                        <p class="card-text">Capacity : Max person ${room.getRoomCapacity()}</p>
+                        <p class="card-text">Amenities : ${room.getRoomAmenities()}</p>
+                        <p class="card-text">Availability :  ${room.getRoomAvailability()}</p>
+                      	</div>
+                      	<c:if test="${room.getRoomAvailability() eq true}">
+                        <button class="btn btn-warning">Book</button>
+                    	</c:if>
+                    	<c:if test="${room.getRoomAvailability() ne true}">
+                        <button class="btn btn-warning">Reserved!</button>
+                    	</c:if>
+                    </a>
+                  </div>
         </c:forEach>
     </div>
 </div>
