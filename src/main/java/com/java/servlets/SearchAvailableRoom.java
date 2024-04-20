@@ -1,6 +1,7 @@
 package com.java.servlets;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -24,26 +25,52 @@ public class SearchAvailableRoom extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+        RoomDAOImpl roomdao = new RoomDAOImpl();
+        Date checkIn = Date.valueOf(request.getParameter("checkIn"));
+        Date checkOut = Date.valueOf(request.getParameter("checkOut"));
+        String inputType = request.getParameter("inputType");
+        Integer inputAdults = Integer.valueOf(request.getParameter("adults"));
+        Integer inputChildrens = Integer.valueOf(request.getParameter("childrens"));
+        Integer inputCapacity = calcCapacity(inputAdults, inputChildrens);
+        request.setAttribute("checkIn", checkIn);
+        request.setAttribute("checkOut", checkOut);
+        request.setAttribute("inputType", inputType);
+        request.setAttribute("inputAdults", inputAdults);
+        request.setAttribute("inputChildrens", inputChildrens);
+        try {
+            request.setAttribute("arrayRoom", roomdao.searchAvailableRoom(inputType, inputCapacity));
+        } catch (ClassNotFoundException | SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        this.getServletContext().getRequestDispatcher("/WEB-INF/Room.jsp").forward(request, response);
+    }
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RoomDAOImpl roomdao = new RoomDAOImpl();
-        Integer inputId = Integer.valueOf(request.getParameter("inputSearch"));
+        Date checkIn = Date.valueOf(request.getParameter("checkIn"));
+        Date checkOut = Date.valueOf(request.getParameter("checkOut"));
         String inputType = request.getParameter("inputType");
-        Integer inputCapacity = Integer.valueOf(request.getParameter("inputCapacity"));
-        System.out.println(inputId);
-        System.out.println(inputType);
-        System.out.println(inputCapacity);
+        Integer inputAdults = Integer.valueOf(request.getParameter("adults"));
+        Integer inputChildrens = Integer.valueOf(request.getParameter("childrens"));
+        Integer inputCapacity = calcCapacity(inputAdults, inputChildrens);
+        request.setAttribute("checkIn", checkIn);
+        request.setAttribute("checkOut", checkOut);
+        request.setAttribute("inputType", inputType);
+        request.setAttribute("inputAdults", inputAdults);
+        request.setAttribute("inputChildrens", inputChildrens);
         try {
-			request.setAttribute("arrayRoom", roomdao.searchAvailableRoom(inputId, inputType, inputCapacity));
+			request.setAttribute("arrayRoom", roomdao.searchAvailableRoom(inputType, inputCapacity));
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        this.getServletContext().getRequestDispatcher("/WEB-INF/Test.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/Room.jsp").forward(request, response);
+    }
+
+    private Integer calcCapacity(Integer inputAdults, Integer inputChildrens) {
+        return inputAdults + inputChildrens;
     }
 
 }

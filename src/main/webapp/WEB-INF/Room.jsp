@@ -64,68 +64,68 @@
         
         <h1 style="top: 80px;" class="welcome text-white heading">Discover our available rooms for reservation</h1>
             <div style="top: 80px;" class="rounded m-5 check-availabilty" id="next">
-                <form class="form-checking row" caction="#">
+                <form id="formCheck" method="post" action="searchavailableroom" class="form-checking row" >
                     <div class="col-md-2 mb-2">
                         <label for="CheckIn">Check In</label>
-                        <input class="form-control mt-1" type="date" id="start" name="checkIn" value="2024-04-19" min="2024-01-01" max="2030-12-31" />
+                        <input class="form-control mt-1" type="date" id="start" name="checkIn" value="${checkIn}" min="2024-01-01" max="2030-12-31" />
                     </div>
                     <div class="col-md-2 mb-2 ">
                         <label for="CheckOut">Check In</label>
-                        <input class="form-control mt-1" type="date" id="End" name="checkOut" value="2024-04-19" min="2024-01-01" max="2030-12-31" />
+                        <input class="form-control mt-1" type="date" id="End" name="checkOut" value="${checkOut}" min="2024-01-01" max="2030-12-31" />
                     </div>
                     <div class="col-md-2 mb-2">
-                        <label for="inputAdulte">Type</label>
-                        <select class="form-control mt-1" id="inputAdulte" name="dept">
-                            <option value="1">Room</option>
-                            <option value="2">Suite</option>
+                        <label for="inputAType">Type</label>
+                        <select class="form-control mt-1" id="roomType" name="inputType">
+                            <option value="Room" ${inputType eq 'Room' ? 'selected' : ''}>Room</option>
+                            <option value="Suite" ${inputType eq 'Suite' ? 'selected' : ''}>Suite</option>
                         </select>
                     </div>
                     <div class="col-md-1 mb-2">
                         <label for="inputAdulte">Adults</label>
-                        <select class="form-control mt-1" id="inputAdulte" name="dept">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5+</option>
+                        <select class="form-control mt-1" id="inputAdults" name="adults">
+                            <option value="1" ${inputAdults eq '1' ? 'selected' : ''}>1</option>
+                            <option value="2" ${inputAdults eq '2' ? 'selected' : ''}>2</option>
+                            <option value="3" ${inputAdults eq '3' ? 'selected' : ''}>3</option>
+                            <option value="4" ${inputAdults eq '4' ? 'selected' : ''}>4</option>
+                            <option value="5" ${inputAdults eq '5' ? 'selected' : ''}>5+</option>
                         </select>
                     </div>
                     <div class="col-md-1 mb-2">
-                        <label for="inputAdulte">Childrens</label>
-                        <select class="form-control mt-1" id="inputAdulte" name="dept">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5+</option>
+                        <label for="inputChildrens">Childrens</label>
+                        <select class="form-control mt-1" id="inputChildrens" name="childrens">
+                            <option value="0" ${inputChildrens eq '0' ? 'selected' : ''}>0</option>
+                            <option value="1" ${inputChildrens eq '1' ? 'selected' : ''}>1</option>
+                            <option value="2" ${inputChildrens eq '2' ? 'selected' : ''}>2</option>
+                            <option value="3" ${inputChildrens eq '3' ? 'selected' : ''}>3</option>
+                            <option value="4" ${inputChildrens eq '4' ? 'selected' : ''}>4+</option>
                         </select>
-                    </div> 
-                    <button style="background-color: #FFC803; height: 40px; width: 200px;" class="border-0 mx-5 mt-3 text-light rounded" style="background-color: #c57e0b;" type="submit" class="btn">Check Availabilty</button>
+                    </div>
+                    <button id="checkRoom"  style="background-color: #FFC803; height: 40px; width: 200px;" class="border-0 mx-5 mt-3 text-light rounded" style="background-color: #c57e0b;" type="submit" class="btn">Check Availabilty</button>
                 </form>
               </div>
-              <div class=" mt-5 card-room">
-    <div class="row">
+                  <div class="card-room">
+                      <div class="row justify-content-center">
         <c:forEach var="room" items="${arrayRoom}">
-				<div class="col-lg-3 bg-light mx-1 my-2" >
-                    <a href="#" class="room">
-                      <figure class="img-wrap">
-                        <img src="https://i.ibb.co/grF3Cnp/junior.jpg"  class="img-fluid mb-3">
-                      </figure>
-                      <div class="p-3 text-center">
+
+                <div class="card room-card">
+                    <img src="https://i.ibb.co/grF3Cnp/junior.jpg" class="card-img-top room-img" alt="Room Image">
+                    <div class="card-body">
                         <h2 class="text-dark">${room.getRoomType()}</h2>
                         <span class="text-uppercase letter-spacing-1 text-warning">${room.getRoomPrice()}$ / per night</span>
                         <p class="card-text">Capacity : Max person ${room.getRoomCapacity()}</p>
                         <p class="card-text">Amenities : ${room.getRoomAmenities()}</p>
                         <p class="card-text">Availability :  ${room.getRoomAvailability()}</p>
-                      	</div>
-                      	<c:if test="${room.getRoomAvailability() eq true}">
+                    </div>
+                    <c:if test="${room.getRoomAvailability() eq true}">
                         <button class="btn btn-warning">Book</button>
-                    	</c:if>
-                    	<c:if test="${room.getRoomAvailability() ne true}">
-                        <button class="btn btn-warning">Reserved!</button>
-                    	</c:if>
-                    </a>
-                  </div>
+                    </c:if>
+                    <c:if test="${room.getRoomAvailability() ne true}">
+                        <button class="btn btn-danger">Reserved!</button>
+                    </c:if>
+                    </div>
+
+
+
         </c:forEach>
     </div>
 </div>

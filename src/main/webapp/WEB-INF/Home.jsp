@@ -65,7 +65,7 @@
         <span id="welcome" class="welcome custom-caption text-uppercase text-white d-block  mb-3">Welcome To 5 <img style="height: 15px; margin-bottom: 5px;" src="https://i.ibb.co/JkBdm7t/star.png" alt="star">   Hotel</span>
         <h1 id="welcome" class="welcome text-white heading">A Best Place To Stay</h1>
             <div class="rounded m-5 check-availabilty" id="next">
-                <form id="formCheck" method="post" action="room" class="form-checking row" >
+                <form id="formCheck" method="post" action="searchavailableroom" class="form-checking row" >
                     <div class="col-md-2 mb-2">
                         <label for="CheckIn">Check In</label>
                         <input class="form-control mt-1" type="date" id="start" name="checkIn" value="2024-04-19" min="2024-01-01" max="2030-12-31" />
@@ -75,15 +75,15 @@
                         <input class="form-control mt-1" type="date" id="End" name="checkOut" value="2024-04-19" min="2024-01-01" max="2030-12-31" />
                     </div>
                     <div class="col-md-2 mb-2">
-                        <label for="inputAdulte">Type</label>
-                        <select class="form-control mt-1" id="inputAdulte" name="dept">
-                            <option value="1">Room</option>
-                            <option value="2">Suite</option>
+                        <label for="inputAType">Type</label>
+                        <select class="form-control mt-1" id="roomType" name="inputType">
+                            <option value="Room">Room</option>
+                            <option value="Suite">Suite</option>
                         </select>
                     </div>
                     <div class="col-md-1 mb-2">
                         <label for="inputAdulte">Adults</label>
-                        <select class="form-control mt-1" id="inputAdulte" name="dept">
+                        <select class="form-control mt-1" id="inputAdults" name="adults">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -92,13 +92,13 @@
                         </select>
                     </div>
                     <div class="col-md-1 mb-2">
-                        <label for="inputAdulte">Childrens</label>
-                        <select class="form-control mt-1" id="inputAdulte" name="dept">
+                        <label for="inputChildrens">Childrens</label>
+                        <select class="form-control mt-1" id="inputChildrens" name="childrens">
+                            <option value="0">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5+</option>
+                            <option value="4">4+</option>
                         </select>
                     </div> 
                     <button id="checkRoom"  style="background-color: #FFC803; height: 40px; width: 200px;" class="border-0 mx-5 mt-3 text-light rounded" style="background-color: #c57e0b;" type="submit" class="btn">Check Availabilty</button>
@@ -234,7 +234,10 @@
                       <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
                     </div>
                     <div class="col-12 col-md-6 text-center">
-                      <button href="" class="button-reserve py-3 mx-5 text-white px-5">Reserve Now</button>
+                        <form method="post" action="room">
+                            <button type="submit" class="button-reserve py-3 mx-5 text-white px-5">Reserve Now</button>
+                        </form>
+
                     </div>
                   </div>
                 </div>
