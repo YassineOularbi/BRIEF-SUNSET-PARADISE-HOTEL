@@ -1,0 +1,94 @@
+@charset "UTF-8";
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+a{
+    text-decoration: none;
+}
+body{
+    height: 100vh;
+    width: 100%;
+    background: url(images/bg-home.jpg) no-repeat top right/cover; 
+
+}
+nav{
+    width: 97%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 70px;
+    background: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    align-items: center;
+    position: fixed;
+    backdrop-filter: blur(10px);
+}
+.bg-home{
+    z-index: -1000;
+    position: fixed;
+
+}
+.welcome{
+    text-align: center;
+    position: relative;
+    top: 200px;
+}
+
+.check-availabilty{
+    align-content: center;
+    align-items: center;
+    position: relative;
+    top: 240px;
+    width: 93%;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.8);
+
+}
+
+.form-checking{
+    justify-content: center;
+}
+.rooms{
+    position: relative;
+    top: 300px;
+}
+.home .reserve{
+    background: transparent;
+    position: relative;
+    top: 350px;
+    width: 100%;
+    height: 100px;
+}
+.home .reserve .button-reserve{
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 30px;
+}
+.home .reserve .button-reserve:hover{
+    background-color: #FFC803;
+    border: 2px solid #FFC803;
+    border-radius: 30px;
+}
+.card-room{
+	position: relative;
+	top: 90px;
+    align-items: center;
+    margin: 20px;
+}
+.room-card {
+    max-width: 370px;
+    margin: 20px auto;
+    padding: 0;
+}
+
+.room-img {
+    max-width: 370px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.btn-reserve {
+    max-width: 370px;
+}
