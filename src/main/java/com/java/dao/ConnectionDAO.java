@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionDAO {
 	private static final String url = "jdbc:mysql://localhost:3306/HOTEL_DB";
     private static final String username = "root";
-    private static final String password = "1234";
+    private static final String password = "YWOLF123@";
     
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
     	Class.forName("com.mysql.cj.jdbc.Driver");

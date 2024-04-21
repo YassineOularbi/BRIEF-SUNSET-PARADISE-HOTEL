@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.java.dao.RoomDAO;
 import com.java.dao.RoomDAOImpl;
 
 
@@ -25,25 +26,18 @@ public class SearchAvailableRoom extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RoomDAOImpl roomdao = new RoomDAOImpl();
+        RoomDAOImpl roomDAO = new RoomDAOImpl();
         Date checkIn = Date.valueOf(request.getParameter("checkIn"));
         Date checkOut = Date.valueOf(request.getParameter("checkOut"));
-        String inputType = request.getParameter("inputType");
-        Integer inputAdults = Integer.valueOf(request.getParameter("adults"));
-        Integer inputChildrens = Integer.valueOf(request.getParameter("childrens"));
-        Integer inputCapacity = calcCapacity(inputAdults, inputChildrens);
         request.setAttribute("checkIn", checkIn);
         request.setAttribute("checkOut", checkOut);
-        request.setAttribute("inputType", inputType);
-        request.setAttribute("inputAdults", inputAdults);
-        request.setAttribute("inputChildrens", inputChildrens);
         try {
-            request.setAttribute("arrayRoom", roomdao.searchAvailableRoom(inputType, inputCapacity));
+            request.setAttribute("arrayRoom", roomDAO.searchAvailableRoom());
         } catch (ClassNotFoundException | SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        this.getServletContext().getRequestDispatcher("/WEB-INF/Room.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/SearchAvailableRoom.jsp").forward(request, response);
     }
 
 
@@ -66,7 +60,7 @@ public class SearchAvailableRoom extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        this.getServletContext().getRequestDispatcher("/WEB-INF/Room.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/SearchAvailableRoom.jsp").forward(request, response);
     }
 
     private Integer calcCapacity(Integer inputAdults, Integer inputChildrens) {

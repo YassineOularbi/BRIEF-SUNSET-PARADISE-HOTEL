@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.java.dao.RoomDAOImpl;
 
 
-@WebServlet("/Test")
-public class Test extends HttpServlet {
+@WebServlet("/Room")
+public class Room extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public Test() {
+    public Room() {
         super();
 
     }
@@ -31,13 +31,20 @@ public class Test extends HttpServlet {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		this.getServletContext().getRequestDispatcher("/WEB-INF/Test.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/Room.jsp").forward(request, response);
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		RoomDAOImpl roomdao = new RoomDAOImpl();
+		try {
+			request.setAttribute("arrayRoom", roomdao.getDataRoom());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		this.getServletContext().getRequestDispatcher("/WEB-INF/Room.jsp").forward(request, response);
 	}
 
 }
