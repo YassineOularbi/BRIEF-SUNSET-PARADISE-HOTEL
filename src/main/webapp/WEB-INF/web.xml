@@ -19,4 +19,30 @@
 <url-pattern>/searchavailableroom</url-pattern>
 </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Room</servlet-name>
+        <servlet-class>com.java.servlets.Room</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Room</servlet-name>
+        <url-pattern>/room</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Reservation</servlet-name>
+        <servlet-class>com.java.servlets.Reservation</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Reservation</servlet-name>
+        <url-pattern>/reservation</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReservationDetails</servlet-name>
+        <servlet-class>com.java.servlets.ReservationDetails</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReservationDetails</servlet-name>
+        <url-pattern>/reservationdetails</url-pattern>
+    </servlet-mapping>
+
 </web-app>
