@@ -76,6 +76,7 @@
             <div class="col-md-2 mb-2">
                 <label for="inputAType">Type</label>
                 <select class="form-control mt-1" id="roomType" name="inputType">
+
                     <option value="Room">Room</option>
                     <option value="Suite">Suite</option>
                 </select>
@@ -91,6 +92,7 @@
             </div>
 
             <button id="checkRoom"  style="background-color: #FFC803; height: 40px; width: 200px;" class="border-0 mx-5 mt-3 text-light rounded" style="background-color: #c57e0b;" type="submit" class="btn">Check Room</button>
+
         </form>
     </div>
     <div class="card-room">
@@ -98,6 +100,7 @@
             <c:forEach var="room" items="${arrayRoom}">
 
                 <div class="card room-card">
+
                     <img src="${room.getRoomPicture()}" class="card-img-top room-img" alt="Room Image">
                     <div class="card-body">
                         <h2 class="text-dark">${room.getRoomType()}</h2>
@@ -112,7 +115,9 @@
                     <c:if test="${room.getRoomAvailability() ne true}">
                         <button class="btn btn-danger">Reserved!</button>
                     </c:if>
+
                     <a class="btn ">More details</a>
+
                 </div>
 
 

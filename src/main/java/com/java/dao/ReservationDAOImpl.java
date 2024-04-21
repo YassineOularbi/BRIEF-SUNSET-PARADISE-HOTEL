@@ -2,6 +2,8 @@ package com.java.dao;
 
 import com.java.beans.Reservation;
 
+import com.java.beans.Room;
+
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class ReservationDAOImpl implements ReservationDAO{
     public void reserveRoom(Integer roomId, String guestName, String guestEmail, String guestNumber, Date dateStart, Date dateEnd) throws SQLException, ClassNotFoundException {
         Connection connection = ConnectionDAO.getConnection();
         String reserveRoom = "INSERT INTO Reservation (roomId, guestName, guestEmail, guestNumber, dateStart, dateEnd) values (?, ?, ?, ?, ?, ?)";
+<<<<<<< HEAD
         PreparedStatement statement = connection.prepareStatement(reserveRoom);
         statement.setInt(1, roomId);
         statement.setString(2, guestName);

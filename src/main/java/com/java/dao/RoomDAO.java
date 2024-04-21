@@ -11,6 +11,5 @@ public interface RoomDAO {
 	public ArrayList<Room> searchAvailableRoom() throws ClassNotFoundException, SQLException;
 	public ArrayList<Room> searchAvailableRoom(Date dateStart, Date dateEnd, String roomType, Integer roomCapacity) throws ClassNotFoundException, SQLException;
 	public ArrayList<Room> searchRoomById(Integer roomId) throws  SQLException, ClassNotFoundException;
-
-
+	
 }

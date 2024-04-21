@@ -47,6 +47,7 @@ public class RoomDAOImpl implements RoomDAO {
     }
 
     @Override
+
 	public ArrayList<Room> searchAvailableRoom(Date dateStart, Date dateEnd, String roomType, Integer roomCapacity) throws ClassNotFoundException, SQLException{
 		ArrayList<Room> arrayRoom = new ArrayList<>();
         Connection connection = ConnectionDAO.getConnection();

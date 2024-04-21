@@ -91,6 +91,7 @@ nav{
 
 .btn-reserve {
     max-width: 370px;
+
 }
 .hotel-room-card {
     margin-top: 100px;
@@ -180,4 +181,5 @@ nav{
 
 .btn.btn-primary:hover {
     background-color: #0056b3;
+
 }

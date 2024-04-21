@@ -69,7 +69,6 @@
 </nav>
 <img class="bg-home me-auto overlay" style="width: 100%" src="https://i.ibb.co/CVJg7Ny/bg-home.jpg">
 <section class="home">
-
     <h1 style="top: 80px;" class="welcome text-white heading">Reservations's Management</h1>
     <div style="top: 80px;" class="rounded m-5 check-availabilty" id="next">
         <form id="formCheck" method="post" action="searchavailableroom" class="form-checking row" >

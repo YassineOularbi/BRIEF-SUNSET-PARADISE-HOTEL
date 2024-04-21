@@ -36,6 +36,7 @@
         <url-pattern>/reservation</url-pattern>
     </servlet-mapping>
 
+
     <servlet>
         <servlet-name>ReservationDetails</servlet-name>
         <servlet-class>com.java.servlets.ReservationDetails</servlet-class>
