@@ -1,3 +1,4 @@
+
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -60,77 +61,79 @@
     </div>
 </nav>
 <img class="bg-home me-auto overlay" style="width: 100%" src="https://i.ibb.co/CVJg7Ny/bg-home.jpg">
-<section class="home">
-
-    <h1 style="top: 80px;" class="welcome text-white heading">Room's & Suite's management</h1>
-    <div style="top: 80px;" class="rounded m-5 check-availabilty" id="next">
-        <form id="formCheck" method="post" action="searchavailableroom" class="form-checking row" >
-            <div class="col-md-2 mb-2">
-                <label for="CheckIn">Check In</label>
-                <input class="form-control mt-1" type="date" id="start" name="checkIn" value="${checkIn}" min="2024-01-01" max="2030-12-31" />
-            </div>
-            <div class="col-md-2 mb-2 ">
-                <label for="CheckOut">Check In</label>
-                <input class="form-control mt-1" type="date" id="End" name="checkOut" value="${checkOut}" min="2024-01-01" max="2030-12-31" />
-            </div>
-            <div class="col-md-2 mb-2">
-                <label for="inputAType">Type</label>
-                <select class="form-control mt-1" id="roomType" name="inputType">
-                    <option value="Room" ${inputType eq 'Room' ? 'selected' : ''}>Room</option>
-                    <option value="Suite" ${inputType eq 'Suite' ? 'selected' : ''}>Suite</option>
-                </select>
-            </div>
-            <div class="col-md-1 mb-2">
-                <label for="inputAdulte">Adults</label>
-                <select class="form-control mt-1" id="inputAdults" name="adults">
-                    <option value="1" ${inputAdults eq '1' ? 'selected' : ''}>1</option>
-                    <option value="2" ${inputAdults eq '2' ? 'selected' : ''}>2</option>
-                    <option value="3" ${inputAdults eq '3' ? 'selected' : ''}>3</option>
-                    <option value="4" ${inputAdults eq '4' ? 'selected' : ''}>4</option>
-                    <option value="5" ${inputAdults eq '5' ? 'selected' : ''}>5+</option>
-                </select>
-            </div>
-            <div class="col-md-1 mb-2">
-                <label for="inputChildrens">Childrens</label>
-                <select class="form-control mt-1" id="inputChildrens" name="childrens">
-                    <option value="0" ${inputChildrens eq '0' ? 'selected' : ''}>0</option>
-                    <option value="1" ${inputChildrens eq '1' ? 'selected' : ''}>1</option>
-                    <option value="2" ${inputChildrens eq '2' ? 'selected' : ''}>2</option>
-                    <option value="3" ${inputChildrens eq '3' ? 'selected' : ''}>3</option>
-                    <option value="4" ${inputChildrens eq '4' ? 'selected' : ''}>4+</option>
-                </select>
-            </div>
-            <button id="checkRoom"  style="background-color: #FFC803; height: 40px; width: 200px;" class="border-0 mx-5 mt-3 text-light rounded" style="background-color: #c57e0b;" type="submit" class="btn">Check Availabilty</button>
-        </form>
+<div style="height:500px; position: relative; background: rgba(255, 255, 255, 0.7); top: 100px;" class="container rounded">
+    <div style="position: absolute; left: 420px; top: 10px" >
+        <h5>Welcome to the paradise sunset</h5>
+        <p>Where you find your absolute happiness</p>
     </div>
-    <div class="card-room">
-        <div class="row justify-content-center">
-            <c:forEach var="room" items="${arrayRoom}">
 
-                <div class="card room-card">
-                    <img src="https://i.ibb.co/grF3Cnp/junior.jpg" class="card-img-top room-img" alt="Room Image">
-                    <div class="card-body">
-                        <h2 class="text-dark">${room.getRoomType()}</h2>
-                        <span class="text-uppercase letter-spacing-1 text-warning">${room.getRoomPrice()}$ / per night</span>
-                        <p class="card-text">Capacity : Max person ${room.getRoomCapacity()}</p>
-                        <p class="card-text">Amenities : ${room.getRoomAmenities()}</p>
-                        <p class="card-text">Availability :  ${room.getRoomAvailability()}</p>
+    <div style="position:relative; top: 70px; left: 60px; width:770px; height: 400px; background: white" class="row justify-content-center align-items-center bg-light rounded">
+        <div style="width: 400px; padding: 0" class="">
+            <c:forEach var="room" items="${arrayRoom}">
+            <div style="width: 370px; height: 400px;"  class="card">
+                <img src="https://i.ibb.co/grF3Cnp/junior.jpg" class="card-img-top room-img" alt="Room Image">
+                <div class="card-body">
+                    <h2 class="text-dark">${room.getRoomType()}</h2>
+                    <p class="card-text text-uppercase letter-spacing-1 text-warning">${room.getRoomPrice()} / per night</p>
+                    <p class="card-text">Capacity : Max person ${room.getRoomCapacity()}</p>
+                    <p class="card-text">Amenities : ${room.getRoomAmenities()}</p>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <div style="width: 370px; height: 400px; background: transparent; border: none;"  class="card">
+            <h3 class="mt-3">Reserve your room</h3>
+            <form action="reservation?roomId=${room.getRoomId()}" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <label for="CheckIn">Check In</label>
+                        <input class="form-control mt-1" type="date" id="start" name="checkIn" value="${checkIn}" min="2024-01-01" max="2030-12-31" />
                     </div>
-                    <c:if test="${room.getRoomAvailability() eq true}">
-                        <button class="btn btn-warning">Not reserved!</button>
-                    </c:if>
-                    <c:if test="${room.getRoomAvailability() ne true}">
-                        <button class="btn btn-danger">Reserved!</button>
-                    </c:if>
+                    <div class="col-md-6 mb-2 ">
+                        <label for="CheckOut">Check Out</label>
+                        <input class="form-control mt-1" type="date" id="End" name="checkOut" value="${checkOut}" min="2024-01-01" max="2030-12-31" />
+                    </div>
                 </div>
 
+                <div class="row">
+                    <button style="width: 160px; margin-left: 13px" type="submit" class="btn btn-warning mt-2 ">Reserve</button>
 
+                    <button style="width: 160px; margin-left: 23px"  class="btn btn-outline-warning mt-2 ">Cancel</button>
 
-            </c:forEach>
+                </div>
+            </form>
+        </div>
+        </c:forEach>
+    </div>
+    <div style="position: absolute; top: 70px; left: 870px;" class="">
+        <img style="width: 140px; margin-left: 40px;" src="https://i.ibb.co/hFYdn7p/light-logo.png">
+        <p><span class="d-block mt-1">Address:</span> <h5 class="text-black"> 98 West 21th Street, Suite <br>721 New York NY 10016</h5></p>
+        <p><span class="d-block">Phone:</span> <h5 class="text-black"> (+1) 435 3533</h5></p>
+        <p><span class="d-block">Email:</span> <h5 class="text-black"> hotel@paradisesunset.com</h5></p>
+        <div style="margin-left: 20%;">
+            <img style="height: 30px" src="https://i.ibb.co/tCqtmV1/tripadvisor.png">
+            <img style="height: 20px" src="https://i.ibb.co/pKxG8qq/11053970-x-logo-twitter-new-brand-icon.png">
+            <img style="height: 30px" src="https://i.ibb.co/C7x7GsC/6047781-facebook-media-social-icon.png">
+            <img style="height: 30px" src="https://i.ibb.co/9Wq04gj/5335781-camera-instagram-social-media-instagram-logo-icon.png">
+
         </div>
     </div>
-</section>
-
+</div>
 <!-- JavaScript Link -->
 <script><%@ include file="js/script.js" %></script>
 <!-- JavaScript Link -->

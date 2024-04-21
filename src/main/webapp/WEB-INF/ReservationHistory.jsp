@@ -1,5 +1,13 @@
-<%@ page pageEncoding="UTF-8" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: DELL
+  Date: 21/04/2024
+  Time: 03:18
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,7 +70,7 @@
 <img class="bg-home me-auto overlay" style="width: 100%" src="https://i.ibb.co/CVJg7Ny/bg-home.jpg">
 <section class="home">
 
-    <h1 style="top: 80px;" class="welcome text-white heading">Room's & Suite's management</h1>
+    <h1 style="top: 80px;" class="welcome text-white heading">Discover our available rooms for reservation</h1>
     <div style="top: 80px;" class="rounded m-5 check-availabilty" id="next">
         <form id="formCheck" method="post" action="searchavailableroom" class="form-checking row" >
             <div class="col-md-2 mb-2">
@@ -103,43 +111,46 @@
             <button id="checkRoom"  style="background-color: #FFC803; height: 40px; width: 200px;" class="border-0 mx-5 mt-3 text-light rounded" style="background-color: #c57e0b;" type="submit" class="btn">Check Availabilty</button>
         </form>
     </div>
-    <div class="card-room">
-        <div class="row justify-content-center">
-            <c:forEach var="room" items="${arrayRoom}">
+<div style="position: absolute; top:250px; left: 37px;"  class="container rounded">
+    <table style="width: 112%;" class="table table-striped mt-5 rounded">
+        <thead style="padding: 10px">
+        <tr>
+            <th style="padding-left: 20px; border-top-left-radius: 10px">Reservation ID</th>
+            <th>Room ID</th>
+            <th>Guest Name</th>
+            <th>Guest Email</th>
+            <th>Guest Number</th>
+            <th>Date Start</th>
+            <th style="border-top-right-radius: 10px" >Date End</th>
+        </tr>
+        </thead>
+        <tbody style="padding: 10px">
+<c:forEach var="reservation" items="${arrayReservation}">
+        <tr>
+            <td style="padding-left: 20px">${reservation.getReservationId()}</td>
+            <td>${reservation.getRoomId()}</td>
+            <td>${reservation.getGuestName()}</td>
+            <td>${reservation.getGuestEmail()}</td>
+            <td>${reservation.getGuestNumber()}</td>
+            <td>${reservation.getDateStart()}</td>
+            <td>${reservation.getDateEnd()}</td>
+        </tr>
+</c:forEach>
 
-                <div class="card room-card">
-                    <img src="https://i.ibb.co/grF3Cnp/junior.jpg" class="card-img-top room-img" alt="Room Image">
-                    <div class="card-body">
-                        <h2 class="text-dark">${room.getRoomType()}</h2>
-                        <span class="text-uppercase letter-spacing-1 text-warning">${room.getRoomPrice()}$ / per night</span>
-                        <p class="card-text">Capacity : Max person ${room.getRoomCapacity()}</p>
-                        <p class="card-text">Amenities : ${room.getRoomAmenities()}</p>
-                        <p class="card-text">Availability :  ${room.getRoomAvailability()}</p>
-                    </div>
-                    <c:if test="${room.getRoomAvailability() eq true}">
-                        <button class="btn btn-warning">Not reserved!</button>
-                    </c:if>
-                    <c:if test="${room.getRoomAvailability() ne true}">
-                        <button class="btn btn-danger">Reserved!</button>
-                    </c:if>
-                </div>
+        </tbody>
+    </table>
+</div>
+    <!-- JavaScript Link -->
+    <script><%@ include file="js/script.js" %></script>
+    <!-- JavaScript Link -->
 
+    <!-- bootstrap js link -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+    <!-- bootstrap js link -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
-            </c:forEach>
-        </div>
-    </div>
-</section>
-
-<!-- JavaScript Link -->
-<script><%@ include file="js/script.js" %></script>
-<!-- JavaScript Link -->
-
-<!-- bootstrap js link -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-<!-- bootstrap js link -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>
+

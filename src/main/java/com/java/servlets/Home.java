@@ -1,7 +1,11 @@
 package com.java.servlets;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,22 +34,19 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LocalDate currentDate = LocalDate.now();
+		request.setAttribute("date", currentDate);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request, response);
 	
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		RoomDAOImpl roomdao = new RoomDAOImpl();
-		try {
-			request.setAttribute("arrayRoom", roomdao.getDataRoom());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		this.getServletContext().getRequestDispatcher("/WEB-INF/Room.jsp").forward(request, response);
+		LocalDate currentDate = LocalDate.now();
+
+
+		request.setAttribute("date", currentDate);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request, response);
 	}
 
 }
