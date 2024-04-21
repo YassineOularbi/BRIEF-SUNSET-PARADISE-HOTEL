@@ -55,7 +55,7 @@ public class SearchAvailableRoom extends HttpServlet {
         request.setAttribute("inputAdults", inputAdults);
         request.setAttribute("inputChildrens", inputChildrens);
         try {
-			request.setAttribute("arrayRoom", roomdao.searchAvailableRoom(inputType, inputCapacity));
+			request.setAttribute("arrayRoom", roomdao.searchAvailableRoom(checkIn, checkOut,inputType, inputCapacity));
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,9 +1,6 @@
 package com.java.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 import com.java.beans.Room;
@@ -50,18 +47,21 @@ public class RoomDAOImpl implements RoomDAO {
     }
 
     @Override
-	public ArrayList<Room> searchAvailableRoom(String roomType, Integer roomCapacity) throws ClassNotFoundException, SQLException{
+	public ArrayList<Room> searchAvailableRoom(Date dateStart, Date dateEnd, String roomType, Integer roomCapacity) throws ClassNotFoundException, SQLException{
 		ArrayList<Room> arrayRoom = new ArrayList<>();
         Connection connection = ConnectionDAO.getConnection();
-        String SearchAvailableRoom = "SELECT * FROM Room WHERE roomAvailability = ? AND (roomType LIKE ?  OR roomCapacity >= ?)";
+        String SearchAvailableRoom = "SELECT * FROM Room WHERE roomAvailability = ?  AND (roomType LIKE ?  OR roomCapacity >= ?)";
         PreparedStatement statement = connection.prepareStatement(SearchAvailableRoom);
         statement.setBoolean(1, true);
         statement.setString(2, "%" + roomType + "%");
         statement.setInt(3, roomCapacity);
+        //statement.setDate(4, dateStart);
+        //statement.setDate(5, dateEnd);
         statementRoom(arrayRoom, statement);
         connection.close();
         statement.close();
 		return arrayRoom;
+
 	}
 
     @Override

@@ -1,7 +1,7 @@
 package com.java.dao;
 
 import com.java.beans.Reservation;
-import com.java.beans.Room;
+
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,22 +25,16 @@ public class ReservationDAOImpl implements ReservationDAO{
     public void reserveRoom(Integer roomId, String guestName, String guestEmail, String guestNumber, Date dateStart, Date dateEnd) throws SQLException, ClassNotFoundException {
         Connection connection = ConnectionDAO.getConnection();
         String reserveRoom = "INSERT INTO Reservation (roomId, guestName, guestEmail, guestNumber, dateStart, dateEnd) values (?, ?, ?, ?, ?, ?)";
-        PreparedStatement statementReserve = connection.prepareStatement(reserveRoom);
-        statementReserve.setInt(1, roomId);
-        statementReserve.setString(2, guestName);
-        statementReserve.setString(3, guestEmail);
-        statementReserve.setString(4, guestNumber);
-        statementReserve.setDate(5, dateStart);
-        statementReserve.setDate(6, dateEnd);
-        statementReserve.executeUpdate();
-        String disableAvailabilityRoom = "UPDATE Room SET roomAvailability = ? WHERE roomId = ?";
-        PreparedStatement statementRoom = connection.prepareStatement(disableAvailabilityRoom);
-        statementRoom.setBoolean(1, false);
-        statementRoom.setInt(2, roomId);
-        statementRoom.executeUpdate();
+        PreparedStatement statement = connection.prepareStatement(reserveRoom);
+        statement.setInt(1, roomId);
+        statement.setString(2, guestName);
+        statement.setString(3, guestEmail);
+        statement.setString(4, guestNumber);
+        statement.setDate(5, dateStart);
+        statement.setDate(6, dateEnd);
+        statement.executeUpdate();
         connection.close();
-        statementReserve.close();
-        statementRoom.close();
+        statement.close();
     }
 
     @Override
@@ -53,5 +47,15 @@ public class ReservationDAOImpl implements ReservationDAO{
         connection.close();
         statement.close();
         return arrayReservation;
+    }
+
+    @Override
+    public void updateStateRoomReservation() throws SQLException, ClassNotFoundException {
+        Connection connection = ConnectionDAO.getConnection();
+        String refreshData = "UPDATE Room INNER JOIN Reservation ON Room.roomId = Reservation.roomId SET Room.roomAvailability = false WHERE Reservation.dateStart <= NOW() AND Reservation.dateEnd >= NOW()";
+        PreparedStatement statement = connection.prepareStatement(refreshData);
+        statement.executeUpdate();
+        connection.close();
+        statement.close();
     }
 }

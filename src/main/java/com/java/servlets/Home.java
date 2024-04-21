@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.java.dao.ReservationDAOImpl;
 import com.java.dao.RoomDAOImpl;
 
 /**
@@ -34,7 +35,13 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LocalDate currentDate = LocalDate.now();
+		ReservationDAOImpl reservationDAO = new ReservationDAOImpl();
+        try {
+            reservationDAO.updateStateRoomReservation();
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        LocalDate currentDate = LocalDate.now();
 		request.setAttribute("date", currentDate);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request, response);
 	
@@ -42,9 +49,13 @@ public class Home extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ReservationDAOImpl reservationDAO = new ReservationDAOImpl();
+		try {
+			reservationDAO.updateStateRoomReservation();
+		} catch (SQLException | ClassNotFoundException e) {
+			throw new RuntimeException(e);
+		}
 		LocalDate currentDate = LocalDate.now();
-
-
 		request.setAttribute("date", currentDate);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request, response);
 	}

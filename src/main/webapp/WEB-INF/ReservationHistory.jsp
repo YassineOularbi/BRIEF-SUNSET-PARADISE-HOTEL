@@ -70,45 +70,38 @@
 <img class="bg-home me-auto overlay" style="width: 100%" src="https://i.ibb.co/CVJg7Ny/bg-home.jpg">
 <section class="home">
 
-    <h1 style="top: 80px;" class="welcome text-white heading">Discover our available rooms for reservation</h1>
+    <h1 style="top: 80px;" class="welcome text-white heading">Reservations's Management</h1>
     <div style="top: 80px;" class="rounded m-5 check-availabilty" id="next">
         <form id="formCheck" method="post" action="searchavailableroom" class="form-checking row" >
             <div class="col-md-2 mb-2">
-                <label for="CheckIn">Check In</label>
-                <input class="form-control mt-1" type="date" id="start" name="checkIn" value="${checkIn}" min="2024-01-01" max="2030-12-31" />
+                <label for="dateStart">Date start</label>
+                <input class="form-control mt-1" type="date" id="start" name="start" value="2024-01-01" min="2024-01-01" max="2030-12-31" />
             </div>
             <div class="col-md-2 mb-2 ">
-                <label for="CheckOut">Check In</label>
-                <input class="form-control mt-1" type="date" id="End" name="checkOut" value="${checkOut}" min="2024-01-01" max="2030-12-31" />
+                <label for="dateEnd">Date end</label>
+                <input class="form-control mt-1" type="date" id="End" name="end" value="2024-01-01" min="2024-01-01" max="2030-12-31" />
             </div>
             <div class="col-md-2 mb-2">
-                <label for="inputAType">Type</label>
+                <label for="inputType">Type</label>
                 <select class="form-control mt-1" id="roomType" name="inputType">
-                    <option value="Room" ${inputType eq 'Room' ? 'selected' : ''}>Room</option>
-                    <option value="Suite" ${inputType eq 'Suite' ? 'selected' : ''}>Suite</option>
+                    <option value="Select">SELECT</option>
+                    <option value="Room">Room</option>
+                    <option value="Suite">Suite</option>
                 </select>
             </div>
-            <div class="col-md-1 mb-2">
-                <label for="inputAdulte">Adults</label>
-                <select class="form-control mt-1" id="inputAdults" name="adults">
-                    <option value="1" ${inputAdults eq '1' ? 'selected' : ''}>1</option>
-                    <option value="2" ${inputAdults eq '2' ? 'selected' : ''}>2</option>
-                    <option value="3" ${inputAdults eq '3' ? 'selected' : ''}>3</option>
-                    <option value="4" ${inputAdults eq '4' ? 'selected' : ''}>4</option>
-                    <option value="5" ${inputAdults eq '5' ? 'selected' : ''}>5+</option>
+            <div class="col-md-2 mb-2">
+                <label for="inputState">State</label>
+                <select class="form-control mt-1" id="state" name="state">
+                    <option value="SELECT" >SELECT</option>
+                    <option value="true" >Passed</option>
+                    <option value="true" >in progress</option>
+                    <option value="true" >Soon</option>
+                    <option value="false" >Canceled</option>
+
                 </select>
             </div>
-            <div class="col-md-1 mb-2">
-                <label for="inputChildrens">Childrens</label>
-                <select class="form-control mt-1" id="inputChildrens" name="childrens">
-                    <option value="0" ${inputChildrens eq '0' ? 'selected' : ''}>0</option>
-                    <option value="1" ${inputChildrens eq '1' ? 'selected' : ''}>1</option>
-                    <option value="2" ${inputChildrens eq '2' ? 'selected' : ''}>2</option>
-                    <option value="3" ${inputChildrens eq '3' ? 'selected' : ''}>3</option>
-                    <option value="4" ${inputChildrens eq '4' ? 'selected' : ''}>4+</option>
-                </select>
-            </div>
-            <button id="checkRoom"  style="background-color: #FFC803; height: 40px; width: 200px;" class="border-0 mx-5 mt-3 text-light rounded" style="background-color: #c57e0b;" type="submit" class="btn">Check Availabilty</button>
+
+            <button id="checkRoom"  style="background-color: #FFC803; height: 40px; width: 200px;" class="border-0 mx-5 mt-3 text-light rounded" style="background-color: #c57e0b;" type="submit" class="btn">Check Reservation</button>
         </form>
     </div>
 <div style="position: absolute; top:250px; left: 37px;"  class="container rounded">
@@ -121,7 +114,8 @@
             <th>Guest Email</th>
             <th>Guest Number</th>
             <th>Date Start</th>
-            <th style="border-top-right-radius: 10px" >Date End</th>
+            <th>Date End</th>
+            <th style="border-top-right-radius: 10px" ></th>
         </tr>
         </thead>
         <tbody style="padding: 10px">
@@ -134,6 +128,7 @@
             <td>${reservation.getGuestNumber()}</td>
             <td>${reservation.getDateStart()}</td>
             <td>${reservation.getDateEnd()}</td>
+            <td><a href="reservationdetails?reservationId=${reservation.getReservationId()}" type="button" class="btn btn-dark">Consult</a></td>
         </tr>
 </c:forEach>
 

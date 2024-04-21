@@ -9,4 +9,5 @@ import java.util.ArrayList;
 public interface ReservationDAO {
     public void reserveRoom(Integer roomId, String guestName, String guestEmail, String guestNumber, Date dateStart, Date dateEnd) throws SQLException, ClassNotFoundException;
     public ArrayList<Reservation> getDataReservation() throws SQLException, ClassNotFoundException;
+    public void updateStateRoomReservation() throws SQLException, ClassNotFoundException;
 }

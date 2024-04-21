@@ -71,7 +71,7 @@
         <div style="width: 400px; padding: 0" class="">
             <c:forEach var="room" items="${arrayRoom}">
             <div style="width: 370px; height: 400px;"  class="card">
-                <img src="https://i.ibb.co/grF3Cnp/junior.jpg" class="card-img-top room-img" alt="Room Image">
+                <img src="${room.getRoomPicture()}" class="card-img-top room-img" alt="Room Image">
                 <div class="card-body">
                     <h2 class="text-dark">${room.getRoomType()}</h2>
                     <p class="card-text text-uppercase letter-spacing-1 text-warning">${room.getRoomPrice()} / per night</p>
