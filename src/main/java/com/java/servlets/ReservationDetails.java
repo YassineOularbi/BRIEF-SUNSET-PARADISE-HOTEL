@@ -3,6 +3,8 @@ package com.java.servlets;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,13 +27,17 @@ public class ReservationDetails extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RoomDAOImpl roomDAO = new RoomDAOImpl();
         ReservationDAOImpl reservationDAO = new ReservationDAOImpl();
-
-            Integer reservationId = Integer.valueOf(request.getParameter("reservationId"));
-            System.out.println(reservationId);
-
-            this.getServletContext().getRequestDispatcher("/WEB-INF/ReservationDetails.jsp").forward(request, response);
+        Integer reservationId = Integer.valueOf(request.getParameter("reservationId"));
+		LocalDate currentDate = LocalDate.now();
+		request.setAttribute("now", currentDate);
+        try {
+			request.setAttribute("details", reservationDAO.reservationDetails(reservationId).stream().collect(Collectors.toList()).get(0));
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        this.getServletContext().getRequestDispatcher("/WEB-INF/ReservationDetails.jsp").forward(request, response);
 
 
     }

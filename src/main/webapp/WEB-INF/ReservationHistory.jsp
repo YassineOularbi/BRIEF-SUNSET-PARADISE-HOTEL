@@ -104,7 +104,7 @@
         </form>
     </div>
 <div style="position: absolute; top:250px; left: 37px;"  class="container rounded">
-    <table style="width: 112%;" class="table table-striped mt-5 rounded">
+    <table style="width: 107%;" class="table table-striped mt-5 rounded">
         <thead style="padding: 10px">
         <tr>
             <th style="padding-left: 20px; border-top-left-radius: 10px">Reservation ID</th>

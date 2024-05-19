@@ -61,7 +61,7 @@
     </div>
 </nav>
 <img class="bg-home me-auto overlay" style="width: 100%" src="https://i.ibb.co/CVJg7Ny/bg-home.jpg">
-<div style="height:500px; position: relative; background: rgba(255, 255, 255, 0.7); top: 100px;" class="container rounded">
+<div style="height:500px; position: relative; background: rgba(255, 255, 255, 0.7); top: 70px;" class="container rounded">
     <div style="position: absolute; left: 420px; top: 10px" >
         <h5>Welcome to the paradise sunset</h5>
         <p>Where you find your absolute happiness</p>

@@ -73,29 +73,66 @@
     <h1 style="top: 80px;" class="welcome text-white heading">Reservation's details</h1>
     <section class="container mt-5">
 
-            <div class="hotel-room-card my-3">
+            <div style="position:absolute; top:150px; left:150px; height:370px; width:950px;" class="hotel-room-card my-3">
                 <div class="room-image">
-                    <img src="https://i.ibb.co/qDc3YMQ/double.jpg" alt="Room Image">
+                    <img src="${details.getRoomPicture()}" alt="Room Image">
                 </div>
-                <div class="room-details">
-                    <h3 class="room-type">luytr</h3>
-                    <p class="room-description">poiuyt</p>
-                    <div class="room-features">
-                        <div class="feature">
-                            <i class="fas fa-bed"></i>
-                            <span>mlkjyt</span>
-                        </div>
-
-                    </div>
+                <div style="height:300px" class="row">
+                <h4 style="height: 50px;" class="mt-3 mx-3">Reservation Id : ${details.getReservationId()} 
+    <c:choose>      
+    <c:when test="${details.getIsInProgress()}">
+        <span class="text-success">In Progress</span>
+    </c:when>
+    <c:otherwise>
+        <span class="text-warning">Not in progress</span>
+    </c:otherwise>
+    </c:choose>
+    </h4>
+                <div style="margin-left: 20px; height:280px;" class="room-details m-2">
+                    <h5>${details.getRoomType()}</h5>
+                                        <p style="margin:0;" class="room-description">Capacity : Max person ${details.getRoomCapacity() }</p>
+                    <p style="margin:0;" class="room-description">Amenities : ${details.getRoomAmenities() }</p>
+                    <p style="margin:0;" class="room-description">Room State : <c:if test="${details.getRoomAvailability() eq true}">
+                        <span class="text-success">Available</span>
+                    </c:if>
+                    <c:if test="${details.getRoomAvailability() ne true}">
+                        <span class="text-danger">Reserved !</span>
+                    </c:if></p>
+                    <p style="margin:0;" class="room-description">Reservation State :
+                        <c:choose>      
+    <c:when test="${details.getIsInProgress()}">
+        <span class="text-success">Confirmed</span>
+    </c:when>
+    <c:otherwise>
+        <span class="text-warning">In process</span>
+    </c:otherwise>
+    </c:choose>
+                    </p> 
                     <div class="room-price">
-                        <span class="price">kuytr</span>
+                        <span class="price">${details.getRoomPrice()} $</span>
                         <span class="per-night">/night</span>
                     </div>
-                    <div class="d-flex justify-content-start w-100 gap-5">
-                        <button class="btn btn-primary w-25 mx-2">Réserver</button>
-                        <button class="btn btn-danger w-25">Cancel</button>
+                    <button style="width: 160px;" type="submit" class="btn btn-warning mt-2 ">Cancel</button>
+                </div>
+                <div style="margin-left: 20px; width:300px; padding-top:O;" class="room-details border-start m-2">
+                <h5>Guest's info :</h5>
+                    <p style="margin:0;" class="room-description">Name : ${details.getGuestName()}</p>
+                    <p style="margin:0;" class="room-description">Email : ${details.getGuestEmail()}</p>
+                    <p style="margin:0;" class="room-description">Number : ${details.getGuestNumber()}</p>
+                    <div class="row">
+                    <div class="col-md-8 mb-1">
+                        <label for="CheckIn">Check In</label>
+                        <input class="form-control mt-1" type="date" id="start" name="checkIn" value="${details.getDateStart()}" min="2024-01-01" max="2030-12-31" />
+                    </div>
+                    <div class="col-md-8 mb-1">
+                        <label for="CheckOut">Check Out</label>
+                        <input class="form-control mt-1" type="date" id="End" name="checkOut" value="${details.getDateEnd()}" min="2024-01-01" max="2030-12-31" />
                     </div>
                 </div>
+                    
+                </div>
+                </div>
+                
             </div>
 
     </section>
